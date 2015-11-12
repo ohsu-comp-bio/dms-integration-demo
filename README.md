@@ -1,6 +1,22 @@
 # DMS Integration Demo #
 
-This Docker Compose
+This Docker Compose project allows us to configure multiple services across
+multiple "federated" sites to demonstrate data integration strategies. By
+running Docker compose on this project, you will get a collection of services
+that are accessible via the web browser:
+
+- A BeatAML DMS instance (LabKey) at [http://dms.beataml.ohsu.dev](http://dms.beataml.ohsu.dev)
+- An OICR DMS instance ([MyWebSQL](mywebsql.net)) at at [http://dms.boutros.oicr.dev](http://dms.boutros.oicr.dev)
+
+Future development will allow for:
+
+- A CCC dashboard app ([Kibana](https://www.elastic.co/products/kibana)) at [http://dashboard.ccc.dev](http://dashboard.ccc.dev)
+- A CCC DTS instance at [http://dts.central-function.ccc.dev](http://dts.central-function.ccc.dev)
+- A CCC ElasticSearch instance at [http://dts.central-function.ccc.dev](http://elasticsearch.central-function.ccc.dev)
+- ETL apps that run on CCC nodes at
+  [http://etl.portland.ccc.dev](http://etl.portland.ccc.dev) and
+  [http://etl.oicr.ccc.dev](http://etl.oicr.ccc.dev). These apps manage the
+  integration 
 
 ## How it works ##
 
