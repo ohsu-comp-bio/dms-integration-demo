@@ -1,0 +1,3 @@
+#!/bin/bash
+mkdir -p $CATALINA_HOME/conf/Catalina/localhost/
+envtpl < /etc/labkey/labkey.xml.j2 > $CATALINA_HOME/conf/Catalina/localhost/ROOT.xml

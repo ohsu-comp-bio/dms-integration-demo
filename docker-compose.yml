@@ -1,0 +1,51 @@
+proxy:
+  container_name: proxy
+  build: services/proxy
+  ports:
+    - 80:80
+  environment:
+    DOCKER_HOST:
+    DOCKER_TLS_VERIFY:
+    DOCKER_CERT_PATH:
+  volumes:
+    - ${DOCKER_CERT_PATH}:${DOCKER_CERT_PATH}
+
+data:
+  container_name: data
+  build: services/data
+
+beataml_postgres:
+  container_name: beataml_postgres
+  build: services/postgres
+  environment:
+    POSTGRES_USER: labkey
+    POSTGRES_PASSWORD: labkey
+
+beataml_dms:
+  container_name: beataml_dms
+  build: services/labkey
+  volumes_from:
+    - data
+  environment:
+    VIRTUAL_HOST: dms.beataml.ohsu.dev
+    VIRTUAL_PORT: 8080
+    DATABASE_USER: labkey
+    DATABASE_PASSWORD: labkey
+    DATABASE_CONNECTION_STRING: jdbc:postgresql://beataml_postgres/labkey
+  volumes:
+    - ./sites/dms.beataml.ohsu.dev:/site
+
+oicr_postgres:
+  container_name: oicr_postgres
+  build: services/postgres
+  environment:
+    POSTGRES_USER: oicr
+    POSTGRES_PASSWORD: oicr
+
+oicr_dms:
+  container_name: oicr_dms
+  build: services/mywebsql
+  environment:
+    VIRTUAL_HOST: dms.boutros.oicr.dev
+  volumes:
+    - ./sites/dms.boutros.oicr.dev:/site

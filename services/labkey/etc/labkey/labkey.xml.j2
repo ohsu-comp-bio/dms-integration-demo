@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context docBase="{{ APPDOCBASE }}" debug="0" reloadable="true" crossContext="true">
+    
+    <Resource name="jdbc/labkeyDataSource" auth="Container"
+        type="javax.sql.DataSource"
+        username="{{ DATABASE_USER }}"
+        password="{{ DATABASE_PASSWORD }}"
+        driverClassName="org.postgresql.Driver"
+        url="{{ DATABASE_CONNECTION_STRING }}"
+        maxActive="20"
+        maxIdle="10"
+        accessToUnderlyingConnectionAllowed="true"
+        validationQuery="SELECT 1"
+        />
+
+    <Resource name="mail/Session" auth="Container"
+        type="javax.mail.Session"
+        mail.smtp.host=""
+        mail.smtp.user=""
+        mail.smtp.port=""/>
+
+    <Loader loaderClass="org.labkey.bootstrap.LabkeyServerBootstrapClassLoader" useSystemClassLoaderAsParent="false" />
+
+    <!-- Encryption key for encrypted property store -->
+    <Parameter name="MasterEncryptionKey" value="xY1w8c16sB98RoIAFLEx" />
+
+    <!-- mzML support via JNI -->
+    <!-- 
+	<Parameter name="org.labkey.api.ms2.mzmlLibrary" value="pwiz_swigbindings"></Parameter>    
+	 -->
+
+    <!-- Track installations from Windows Installer -->
+    <!--@@installer@@ <Parameter name="org.labkey.api.util.mothershipreport.usedInstaller" value="true"/> @@installer@@-->
+
+    <!-- Pipeline configuration -->
+    <!--@@pipeline@@    <Parameter name="org.labkey.api.pipeline.config" value="@@pipelineConfigPath@@"/> @@pipeline@@-->
+
+    <!--        brokerURL="tcp://localhost:61616" userName="username" password="password" -->
+    <!-- <Resource name="jms/ConnectionFactory" auth="Container"
+        type="org.apache.activemq.ActiveMQConnectionFactory"
+        factory="org.apache.activemq.jndi.JNDIReferenceFactory"
+        description="JMS Connection Factory"
+        brokerURL="vm://localhost?broker.persistent=false&amp;broker.useJmx=false"
+        brokerName="LocalActiveMQBroker"/> -->
+    <!-- <Resource name="services/NotificationConsumerService/home"
+        type="org.globus.wsrf.impl.notification.NotificationConsumerHome"
+        factory="org.globus.wsrf.jndi.BeanFactory"
+        resourceClass="org.globus.wsrf.impl.NotificationConsumerCallbackManagerImpl"
+        resourceKeyName="{http://www.globus.org/namespaces/2004/06/core}NotificationConsumerKey"
+        resourceKeyType="java.lang.String" />
+    <Resource name="timer/ContainerTimer"
+        type="org.globus.wsrf.impl.timer.TimerManagerImpl"
+        factory="org.globus.wsrf.jndi.BeanFactory" />
+    <Resource name="topic/ContainerTopicExpressionEngine"
+        type="org.globus.wsrf.impl.TopicExpressionEngineImpl"
+        factory="org.globus.wsrf.jndi.BeanFactory" />
+    <Resource name="query/eval/xpath"
+        type="org.globus.wsrf.impl.XPathExpressionEvaluator"
+        factory="org.globus.wsrf.jndi.BeanFactory" />
+    <Resource name="query/ContainerQueryEngine"
+        type="org.globus.wsrf.impl.QueryEngineImpl"
+        factory="org.globus.wsrf.jndi.BeanFactory" />
+    <Resource name="topic/eval/simple"
+        type="org.globus.wsrf.impl.SimpleTopicExpressionEvaluator"
+        factory="org.globus.wsrf.jndi.BeanFactory" /> -->
+</Context>
