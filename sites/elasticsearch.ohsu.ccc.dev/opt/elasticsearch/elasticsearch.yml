@@ -1,0 +1,6 @@
+cluster.name: ohsu
+node.name: ohsu-node
+
+path:
+  logs: /data/log
+  data: /data/data

@@ -49,3 +49,30 @@ oicr_dms:
     VIRTUAL_HOST: dms.boutros.oicr.dev
   volumes:
     - ./sites/dms.boutros.oicr.dev:/site
+
+oicr_elasticsearch:
+  container_name: oicr_elasticsearch
+  build: services/elasticsearch
+  environment:
+    VIRTUAL_HOST: elasticsearch.oicr.ccc.dev
+    VIRTUAL_PORT: 9200
+  volumes:
+    - ./sites/elasticsearch.oicr.ccc.dev:/site
+
+ohsu_elasticsearch:
+  container_name: ohsu_elasticsearch
+  build: services/elasticsearch
+  environment:
+    VIRTUAL_HOST: elasticsearch.ohsu.ccc.dev
+    VIRTUAL_PORT: 9200
+  volumes:
+    - ./sites/elasticsearch.ohsu.ccc.dev:/site
+
+central_function_elasticsearch:
+  container_name: central_function_elasticsearch
+  build: services/elasticsearch
+  environment:
+    VIRTUAL_HOST: elasticsearch.central-function.ccc.dev
+    VIRTUAL_PORT: 9200
+  volumes:
+    - ./sites/elasticsearch.central-function.ccc.dev:/site

@@ -1,0 +1,12 @@
+cluster.name: ccc
+node.name: central-function
+
+path:
+  logs: /data/log
+  data: /data/data
+
+tribe:
+    t1:
+        cluster.name:   ohsu
+    t2:
+        cluster.name:   oicr

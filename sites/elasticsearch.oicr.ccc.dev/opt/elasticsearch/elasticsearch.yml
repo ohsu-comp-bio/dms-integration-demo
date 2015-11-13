@@ -1,0 +1,6 @@
+cluster.name: oicr
+node.name: oicr-node
+
+path:
+  logs: /data/log
+  data: /data/data
