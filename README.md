@@ -76,7 +76,6 @@ consistent manner. For example, the directory layout of this project looks like:
 │   ├── mywebsql
 │   │   ├── Dockerfile
 │   │   ├── etc
-│   │   │   ├── my_init.d
 │   │   │   ├── nginx
 │   │   │   │   └── sites-enabled
 │   │   │   │       └── mywebsql.conf
@@ -98,8 +97,6 @@ consistent manner. For example, the directory layout of this project looks like:
 │       └── app
 │           └── nginx.tmpl
 └── sites
-    ├── dms.beataml.ohsu.dev
-    ├── dms.boutros.oicr.dev
     ├── elasticsearch.central-function.ccc.dev
     │   └── opt
     │       └── elasticsearch
