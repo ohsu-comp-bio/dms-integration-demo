@@ -76,3 +76,12 @@ central_function_elasticsearch:
     VIRTUAL_PORT: 9200
   volumes:
     - ./sites/elasticsearch.central-function.ccc.dev:/site
+
+central_function_galaxy:
+  container_name: central_function_galaxy
+  build: services/galaxy
+  environment:
+    VIRTUAL_HOST: galaxy.central-function.ccc.dev
+    VIRTUAL_PORT: 8080
+  volumes_from:
+    - data

@@ -1,0 +1,3 @@
+[submodule "services/galaxy/opt/galaxy"]
+	path = services/galaxy/opt/galaxy
+	url = git@github.com:Intel-HSS/galaxy.git

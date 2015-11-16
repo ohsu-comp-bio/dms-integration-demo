@@ -1,0 +1,2 @@
+#!/bin/bash
+cp /etc/galaxy/local_env.sh /opt/galaxy/config/local_env.sh

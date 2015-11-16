@@ -17,6 +17,8 @@ that are accessible via the web browser. They are broken down by institutions.
   + Central Function
     + [http://elasticsearch.central-function.ccc.dev](http://elasticsearch.central-function.ccc.dev):
       Search indexing via ElasticSearch, configured as a Tribe node
+    + [http://galaxy.central-function.ccc.dev](http://galaxy.central-function.ccc.dev):
+      CCC version of Galaxy.
   + OHSU
     + [http://elasticsearch.ohsu.ccc.dev](http://elasticsearch.ohsu.ccc.dev):
       Search indexing via ElasticSearch

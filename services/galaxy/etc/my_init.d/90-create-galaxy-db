@@ -1,0 +1,3 @@
+#!/bin/bash
+mkdir -p /data/galaxy/database
+GALAXY_CONFIG_DATABASE_CONNECTION="sqlite:////data/galaxy/database/galaxy.sqlite" sh create_db.sh
