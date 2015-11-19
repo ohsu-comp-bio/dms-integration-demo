@@ -85,3 +85,7 @@ central_function_galaxy:
     VIRTUAL_PORT: 8080
   volumes_from:
     - data
+
+selenium:
+  container_name: selenium
+  build: services/selenium

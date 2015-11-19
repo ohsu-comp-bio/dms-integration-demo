@@ -69,4 +69,8 @@ RUN mkdir /site
 
 ADD . / 
 
-CMD cp -r /site/. / && /sbin/my_init
+# Install Ruby dependencies
+RUN gem install bundler
+RUN cd /etc/labkey && bundle install
+
+CMD cp -rf /site/. / && /sbin/my_init
