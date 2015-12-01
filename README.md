@@ -26,6 +26,7 @@ that are accessible via the web browser. They are broken down by institutions.
   + OHSU
     + [http://elasticsearch.ohsu.ccc.dev](http://elasticsearch.ohsu.ccc.dev):
       Search indexing via ElasticSearch
+    + [Kibana test server](http://e72f625a-bpwalsh.node.tutum.io:5601/app/kibana#/dashboard/aggregated-resource?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-15m,mode:quick,to:now))&_a=(filters:!((meta:(disabled:!f,index:'individual-*',key:sex.raw,negate:!f,value:MALE),query:(match:(sex.raw:(query:MALE,type:phrase))))),options:(darkTheme:!f),panels:!((col:1,id:aggregated-resource-donor_age_at_diagnosis,row:1,size_x:3,size_y:2,type:visualization),(col:7,columns:!(ccc_did,url),id:aggregated-resource,row:3,size_x:6,size_y:5,sort:!(_score,desc),type:search),(col:1,id:individual-individuals,row:3,size_x:5,size_y:4,type:visualization),(col:4,id:individual-sex,row:1,size_x:3,size_y:2,type:visualization),(col:7,id:aggregated-resource-project_code,row:1,size_x:2,size_y:2,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:aggregated-resource))
   + OICR
     + [http://elasticsearch.oicr.ccc.dev](http://elasticsearch.oicr.ccc.dev):
       Search indexing via ElasticSearch
