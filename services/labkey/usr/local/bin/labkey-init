@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'selenium-webdriver'
+
+driver = Selenium::WebDriver.for(:remote,
+           url: 'http://selenium:4444/wd/hub',
+           desired_capabilities: :chrome)
+  
+driver.navigate.to "http://beataml_dms"
+
+element = driver.find_element(:name, 'q')
+element.send_keys "Hello WebDriver!"
+element.submit
+
+puts driver.title
+
+driver.quit

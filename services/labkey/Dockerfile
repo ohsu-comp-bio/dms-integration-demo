@@ -45,12 +45,12 @@ RUN python3 /opt/get-pip.py && rm /opt/get-pip.py
 RUN pip install envtpl
 
 # Download Labkey
-RUN curl http://labkey.s3.amazonaws.com/downloads/general/r/15.2/LabKey15.2-39349.20-bin.tar.gz > /opt/labkey.tar.gz
+RUN curl http://labkey.s3.amazonaws.com/downloads/general/r/15.3/LabKey15.3-41116.23-community-bin.tar.gz > /opt/labkey.tar.gz
 
 # Extract Labkey
 RUN cd /opt && \
   tar -xf labkey.tar.gz && \
-  mv LabKey15.2-39349.20-bin labkey && \
+  mv LabKey15.3-41116.23-community-bin labkey && \
   rm labkey.tar.gz
 
 RUN cp /opt/labkey/tomcat-lib/* /usr/local/tomcat/lib
@@ -72,5 +72,16 @@ ADD . /
 # Install Ruby dependencies
 RUN gem install bundler
 RUN cd /etc/labkey && bundle install
+
+RUN cd /opt && \
+  curl http://labkey.s3.amazonaws.com/downloads/general/r/15.3/LabKey15.3-41116.23-ExtraModules.tar.gz > labkey-extramodules.tar.gz && \
+  tar -xvvf labkey-extramodules.tar.gz && \
+  cp LabKey15.3-41116.23-bin/modules/* /opt/labkey/modules && \
+  rm -Rf labkey-extramodules.tar.gz
+
+# TODO: Remove /opt/LabKey15.3-41116.23-bin
+
+RUN cp /opt/ccc_cf_client/build/ccc_client.module /opt/labkey/modules
+RUN cp /opt/dms_omics_imaging/labkey/modules/LDK.module /opt/labkey/modules
 
 CMD cp -rf /site/. / && /sbin/my_init
