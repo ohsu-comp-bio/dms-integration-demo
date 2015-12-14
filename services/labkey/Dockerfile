@@ -28,7 +28,7 @@ RUN gpg --keyserver pool.sks-keyservers.net --recv-keys \
   F7DA48BB64BCB84ECBA7EE6935CD23C10D498E23
 
 ENV TOMCAT_MAJOR 7
-ENV TOMCAT_VERSION 7.0.65
+ENV TOMCAT_VERSION 7.0.67
 ENV TOMCAT_TGZ_URL https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
 
 RUN set -x \
@@ -73,13 +73,13 @@ ADD . /
 RUN gem install bundler
 RUN cd /etc/labkey && bundle install
 
-RUN cd /opt && \
+# Download and extract extra modules.
+RUN mkdir /opt/labkey/externalModules && \
+  cd /opt && \
   curl http://labkey.s3.amazonaws.com/downloads/general/r/15.3/LabKey15.3-41116.23-ExtraModules.tar.gz > labkey-extramodules.tar.gz && \
   tar -xvvf labkey-extramodules.tar.gz && \
-  cp LabKey15.3-41116.23-bin/modules/* /opt/labkey/modules && \
-  rm -Rf labkey-extramodules.tar.gz
-
-# TODO: Remove /opt/LabKey15.3-41116.23-bin
+  cp LabKey15.3-41116.23-bin/modules/* /opt/labkey/externalModules && \
+  rm -Rf labkey-extramodules.tar.gz LabKey15.3-41116.23-bin
 
 RUN cp /opt/ccc_cf_client/build/ccc_client.module /opt/labkey/modules
 RUN cp /opt/dms_omics_imaging/labkey/modules/LDK.module /opt/labkey/modules
