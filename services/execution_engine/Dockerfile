@@ -20,7 +20,7 @@ RUN apt-get install -y sbt maven libboost-dev libboost-test-dev \
 # Install Thrift
 RUN curl http://apache.cs.utah.edu/thrift/0.9.3/thrift-0.9.3.tar.gz > /opt/thrift-0.9.3.tar.gz
 RUN cd /opt && tar -xf thrift-0.9.3.tar.gz
-RUN cd /opt/thrift-0.9.3 && ./configure ./configure --without-ruby && make && make install
+RUN cd /opt/thrift-0.9.3 && ./configure --without-ruby && make && make install
 
 # Add project sources
 ADD . /
