@@ -45,6 +45,11 @@ RUN cp /opt/execution_engine/cromwell/project/plugins.sbt /opt/cromwell/project/
 RUN cp /opt/execution_engine/dispatcher/target/scala-2.11/ccc_dispatcher.jar /opt/cromwell/lib/
 
 # Build Cromwell
-RUN cd /opt/cromwell && rm assembly.sbt && sbt assmembly
+RUN cd /opt/cromwell && rm assembly.sbt && sbt assembly
+
+# Install pip + envtpl for rendering Jinja2 templates from environment variables
+RUN curl https://bootstrap.pypa.io/get-pip.py > /opt/get-pip.py
+RUN python3 /opt/get-pip.py && rm /opt/get-pip.py
+RUN pip install envtpl
 
 CMD cp -r /site/. / && /sbin/my_init

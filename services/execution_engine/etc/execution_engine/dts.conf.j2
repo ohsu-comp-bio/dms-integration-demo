@@ -1,0 +1,22 @@
+dts {
+  db {
+    host = "{{ DTS_DATABASE_HOST }}"
+    port = {{ DTS_DATABASE_PORT }}
+    name = {{ DTS_DATABASE_NAME }}
+    collection = {{ DTS_DATABASE_COLLECTION }}
+  }
+  http {
+    host = "{{ DTS_INTERFACE | default("0.0.0.0") }}"
+    port = {{ DTS_PORT | default(9510) }}
+  }
+}
+
+akka {
+  actor {
+    debug {
+      fsm = on
+    }
+  }
+  loggers = ["akka.event.slf4j.Slf4jLogger"]
+  loglevel = DEBUG
+}

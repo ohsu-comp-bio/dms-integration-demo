@@ -1,0 +1,48 @@
+dispatcher {
+  agent {
+    centralHostName = "{{ DISPATCHER_CENTRAL_HOST | default("192.168.100.22") }}"
+    resources = [
+      {key = "task", value = "api/v1/drmaa/job", port = {{ DISPATCHER_JOB_PORT | default(9500) }}},
+      {key = "file", value = "api/v1/file", port = {{ DISPATCHER_FILE_PORT | default(9501) }}}
+    ]
+  }
+
+  dts {
+    hostname = "{{ DTS_HOST }}
+    port = {{ DTS_PORT | default(9510) }}
+    fileResourcePath = "api/v1/dts/file"
+  }
+
+  appRepository {
+    hostname = "{{ APPREPOSITORY_HOST }}"
+    port = {{ APPREPOSITORY_PORT }}
+    toolResourcePath = "api/v1/tool/%s/data"
+  }
+
+  drmaaMapper {
+    dockerCmd = "docker run %s %s --rm %s %s"
+  }
+}
+
+akka {
+  actor {
+    debug {
+      fsm = on
+    }
+  }
+  loggers = ["akka.event.slf4j.Slf4jLogger"]
+  loglevel = INFO
+}
+
+spray.can {
+  host-connector {
+    max-connections = 500
+    max-retries = 10
+    pipelining = on
+  }
+  client {
+    idle-timeout = 60s
+    request-timeout = 30s
+    connecting-timeout = 10s
+  }
+}

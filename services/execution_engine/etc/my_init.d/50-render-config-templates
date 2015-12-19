@@ -1,0 +1,5 @@
+#!/bin/bash
+envtpl < /etc/execution_engine/agent.conf.j2 > /etc/execution_engine/agent.conf
+envtpl < /etc/execution_engine/cromwell.conf.j2 > /etc/execution_engine/cromwell.conf
+envtpl < /etc/execution_engine/dispatcher.conf.j2 > /etc/execution_engine/dispatcher.conf
+envtpl < /etc/execution_engine/dts.conf.j2 > /etc/execution_engine/dts.conf

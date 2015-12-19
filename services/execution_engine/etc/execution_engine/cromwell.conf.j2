@@ -1,0 +1,129 @@
+webservice {
+  port = {{ CROMWELL_WEB_PORT | default(8000) }}
+  interface = {{ CROMWELL_WEB_INTERFACE | default("0.0.0.0") }}
+  instance.name = "reference"
+}
+
+akka {
+  loggers = ["akka.event.slf4j.Slf4jLogger"]
+  loglevel = DEBUG
+}
+
+swagger {
+  baseUrl = ""
+  api {
+    info = "Cromwell"
+    version = "0.7" // TODO: Read at runtime?
+    contact = "dsde@broadinstitute.org"
+    description = "One workflow service to rule them all..."
+    license = "BSD"
+    licenseUrl = "http://opensource.org/licenses/BSD-3-Clause"
+    termsOfServiceUrl = "http://www.github.com/broadinstitute/cromwell"
+  }
+  ui.version = "2.1.1"
+}
+
+spray.can {
+  server {
+    request-timeout = 40s
+  }
+  client {
+    request-timeout = 40s
+    connecting-timeout = 40s
+  }
+}
+
+
+backend {
+  // Either "jes", "local", or "sge" (case insensitive)
+//  backend = "local"
+
+  backend = "cloud"
+  cloud {
+    defaultExecOutputPath = "/data/execution_engine/output_path"
+    execWaitTimeInSeconds = 3600
+  }
+
+  // If backend is JES, must supply a 'jes' stanza:
+  //jes {
+  //  applicationName = ""
+  //  project = ""
+  //  baseExecutionBucket = ""
+  //  endpointUrl = ""
+  //}
+
+  // For any backend that assumes a local filesystem (local, sge)
+  shared-filesystem {
+    // Root directory where Cromwell writes job results to.  This directory must be
+    // visible and writeable to the Cromwell process as well as the jobs that Cromwell
+    // launches
+    root: "cromwell-executions"
+
+    // Cromwell makes a link to your input files within <root>/<workflow UUID>/workflow-inputs
+    // The following are strategies used to make those links.  They are ordered.  If one fails
+    // The next one is tried:
+    //
+    // hard-link: attempt to create a hard-link to the file
+    // copy: copy the file
+    // soft-link: create a symbolic link to the file
+    //
+    // NOTE: soft-link will be skipped for Docker jobs
+    localization: [
+      "hard-link", "soft-link", "copy"
+    ]
+  }
+}
+
+// If authenticating with Google (e.g. if backend is 'JES') you must supply a top level stanza 'google':
+//google {
+//  authScheme = "user"
+
+// If authScheme is "user"
+//  userAuth {
+//    user = ""
+//    secretsFile = ""
+//    dataStoreDir = ""
+//  }
+
+// If authScheme is "service"
+//  serviceAuth {
+//    p12File = ""
+//    serviceAccountId = ""
+//  }
+//}
+
+database {
+  config = main.hsqldb
+
+  main {
+    hsqldb {
+      url = "jdbc:hsqldb:mem:${slick.uniqueSchema};shutdown=false;hsqldb.tx=mvcc"
+      driver = "org.hsqldb.jdbcDriver"
+      slick.driver = "slick.driver.HsqldbDriver"
+      slick.createSchema = true
+    }
+  }
+
+  test {
+    hsqldb {
+      url = "jdbc:hsqldb:mem:testdb;shutdown=false;hsqldb.tx=mvcc"
+      driver = "org.hsqldb.jdbcDriver"
+      slick.driver = "slick.driver.HsqldbDriver"
+      liquibase = {
+        changelog = "src/main/migrations/changelog.xml"
+        connection = "liquibase.database.jvm.HsqlConnection"
+      }
+    }
+
+    mysql {
+      url = "jdbc:mysql://localhost/cromwell_test"
+      user = "travis"
+      password = ""
+      driver = "com.mysql.jdbc.Driver"
+      slick.driver = "slick.driver.MySQLDriver"
+      liquibase = {
+        changelog = "src/main/migrations/changelog.xml"
+      }
+    }
+  }
+}
