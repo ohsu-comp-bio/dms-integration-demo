@@ -89,3 +89,40 @@ central_function_galaxy:
 selenium:
   container_name: selenium
   build: services/selenium
+
+dts:
+  container_name: dts
+  build: services/execution_engine
+  environment:
+    VIRTUAL_HOST: dts.exeuction-engine.central-function.ccc.dev
+    VIRTUAL_PORT: 8080
+  volumes:
+    - ./sites/dts.central-function.ccc.dev:/site
+
+dispatcher:
+  container_name: dispatcher
+  build: services/execution_engine
+  environment:
+    VIRTUAL_HOST: dispatcher.execution-engine.central-function.ccc.dev
+    VIRTUAL_PORT: 8080
+  volumes:
+    - ./sites/dispatcher.central-function.ccc.dev:/site
+
+agent:
+  container_name: agent
+  build: services/execution_engine
+  environment:
+    VIRTUAL_HOST: agent.execution-engine.central-function.ccc.dev
+    VIRTUAL_PORT: 8080
+  volumes:
+    - ./sites/dispatcher.central-function.ccc.dev:/site
+
+cromwell:
+  container_name: cromwell
+  build: services/execution_engine
+  environment:
+    VIRTUAL_HOST: cromwell
+      cromwell.execution-engine.central-function.ccc.dev
+    VIRTUAL_PORT: 8080
+  volumes:
+    - ./sites/cromwell.execution-engine.central-function.ccc.dev:/site

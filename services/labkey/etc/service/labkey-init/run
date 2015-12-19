@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+quit if File.exists? '/etc/service/labkey-init/down'
+
+require 'selenium-webdriver'
+require 'fileutils'
+require 'socket'
+
+driver = Selenium::WebDriver.for(:remote,
+           url: 'http://selenium:4444/wd/hub',
+           desired_capabilities: :chrome)
+
+# Allow 10 minutes for this LabKey instance to spin up.
+driver.manage.timeouts.page_load = 600
+
+# Note that we can't navigate to http://beataml_dms:8080 since it's not a TLD.
+# (LabKey will raise an exception.) We will take our current IP address and
+# use xip.io to resolve to it.
+ip = Socket.
+  ip_address_list.
+  select(&:ipv4?).
+  reject(&:ipv4_loopback?).
+  first.
+  ip_address
+
+driver.navigate.to "http://#{ip}.xip.io:8080"
+
+# See if the 'wizardBody' div container exists. Otherwise, assume the page is
+# already loaded!
+if driver.find_elements(id: 'wizardBody').any?
+
+  # Fill in e-mail and passwords.
+  driver.find_element(name: 'email').send_keys('admin@ccc.org')
+  driver.find_element(name: 'password').send_keys('password')
+  driver.find_element(name: 'password2').send_keys('password')
+
+  # Submit the form
+  driver.find_element(id: 'setPasswordForm').submit()
+end
+
+# Once initiated, kill the labkey-init service
+FileUtils.touch('/etc/service/labkey-init/down')
+system 'sv stop /etc/service/labkey-init'
+
+driver.quit

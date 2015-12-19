@@ -4,9 +4,9 @@
 [submodule "services/CCC_Central/opt/central_function"]
 	path = services/CCC_Central/opt/central_function
 	url = git@github.com:Intel-HSS/CCC_Central.git
-[submodule "services/labkey/opt/ccc_cf_client"]
-	path = services/labkey/opt/ccc_cf_client
-	url = git@github.com:Intel-HSS/CCC_CF_Client.git
-[submodule "services/labkey/opt/dms_omics_imaging"]
-	path = services/labkey/opt/dms_omics_imaging
-	url = git@github.com:Intel-HSS/DMS_Omics_Imaging.git
+[submodule "services/execution_engine/opt/cromwell"]
+	path = services/execution_engine/opt/cromwell
+	url = https://github.com/broadinstitute/cromwell
+[submodule "services/execution_engine/opt/execution_engine"]
+	path = services/execution_engine/opt/execution_engine
+	url = git@github.com:Intel-HSS/CCC_ExEngine.git

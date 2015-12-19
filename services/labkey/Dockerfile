@@ -81,7 +81,6 @@ RUN mkdir /opt/labkey/externalModules && \
   cp LabKey15.3-41116.23-bin/modules/* /opt/labkey/externalModules && \
   rm -Rf labkey-extramodules.tar.gz LabKey15.3-41116.23-bin
 
-RUN cp /opt/ccc_cf_client/build/ccc_client.module /opt/labkey/modules
-RUN cp /opt/dms_omics_imaging/labkey/modules/LDK.module /opt/labkey/modules
+RUN cp /opt/ccc_cf_client/build/ccc_client.module /opt/labkey/externalModules
 
 CMD cp -rf /site/. / && /sbin/my_init
