@@ -1,1 +1,3 @@
+#!/bin/bash
+envtpl < /etc/execution_engine/dispatcher.conf.j2 > /etc/execution_engine/dispatcher.conf
 rm /etc/service/dispatcher/down

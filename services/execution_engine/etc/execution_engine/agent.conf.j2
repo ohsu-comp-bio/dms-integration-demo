@@ -1,7 +1,7 @@
 agent {
   schedulers = [
-    { "drmaa" : "http://{{ AGENT_SCHEDULER_DRMAA_HOST | default("127.0.0.1") }}:{{ AGENT_SCHEDULER_DRMAA_PORT | default(9502) }}/api/v1/drmaa/job" },
-    { "non-drmaa" : "http://{{ AGENT_SCHEDULER_NONDRMAA_HOST | default("127.0.0.1") }}:{{ AGENT_SCHEDULER_NONDRMAA_PORT | default(9503) }}" }
+    { "drmaa" : "http://{{ AGENT_SCHEDULER_DRMAA_HOST }}:{{ AGENT_SCHEDULER_DRMAA_PORT | default(9502) }}/api/v1/drmaa/job" },
+    { "non-drmaa" : "http://{{ AGENT_SCHEDULER_NONDRMAA_HOST }}:{{ AGENT_SCHEDULER_NONDRMAA_PORT | default(9503) }}" }
   ]
 }
 

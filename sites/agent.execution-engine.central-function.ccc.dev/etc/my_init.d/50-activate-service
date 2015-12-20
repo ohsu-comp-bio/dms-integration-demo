@@ -1,1 +1,3 @@
+#!/bin/bash
+envtpl < /etc/execution_engine/agent.conf.j2 > /etc/execution_engine/agent.conf
 rm /etc/service/agent/down

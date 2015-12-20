@@ -1,1 +1,3 @@
+#!/bin/bash
+envtpl < /etc/execution_engine/cromwell.conf.j2 > /etc/execution_engine/cromwell.conf
 rm /etc/service/cromwell/down

@@ -1,6 +1,6 @@
 dispatcher {
   agent {
-    centralHostName = "{{ DISPATCHER_CENTRAL_HOST | default("192.168.100.22") }}"
+    centralHostName = "{{ DISPATCHER_CENTRAL_HOST }}"
     resources = [
       {key = "task", value = "api/v1/drmaa/job", port = {{ DISPATCHER_JOB_PORT | default(9500) }}},
       {key = "file", value = "api/v1/file", port = {{ DISPATCHER_FILE_PORT | default(9501) }}}

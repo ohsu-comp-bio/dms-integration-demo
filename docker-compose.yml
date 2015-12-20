@@ -95,9 +95,17 @@ dts:
   build: services/execution_engine
   environment:
     VIRTUAL_HOST: dts.exeuction-engine.central-function.ccc.dev
-    VIRTUAL_PORT: 8080
+    VIRTUAL_PORT: 9510
   volumes:
     - ./sites/dts.central-function.ccc.dev:/site
+  environment:
+    AGENT_SCHEDULER_DRMAA_HOST: localhost
+    AGENT_SCHEDULER_NONDRMAA_HOST: localhost
+    DTS_DATABASE_HOST: dts_database
+
+dts_database:
+  container_name: dts_database
+  image: mongo/3.0.8
 
 dispatcher:
   container_name: dispatcher
@@ -123,6 +131,6 @@ cromwell:
   environment:
     VIRTUAL_HOST: cromwell
       cromwell.execution-engine.central-function.ccc.dev
-    VIRTUAL_PORT: 8080
+    VIRTUAL_PORT: 8000
   volumes:
     - ./sites/cromwell.execution-engine.central-function.ccc.dev:/site

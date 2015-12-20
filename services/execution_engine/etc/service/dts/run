@@ -1,0 +1,2 @@
+#!/bin/bash
+eval java -jar -Dconfig.file=/etc/execution_engine/dts.conf /opt/execution_engine/dts/target/scala-2.11/ccc_dts.jar

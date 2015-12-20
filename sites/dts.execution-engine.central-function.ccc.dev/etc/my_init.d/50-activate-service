@@ -1,1 +1,3 @@
+#!/bin/bash
+envtpl < /etc/execution_engine/dts.conf.j2 > /etc/execution_engine/dts.conf
 rm /etc/service/dts/down

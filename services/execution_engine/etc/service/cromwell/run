@@ -1,2 +1,2 @@
 #!/bin/bash
-eval java -jar /opt/cromwell/target/scala-2.11/cromwell-0.10.jar server
+eval java -jar -Dconfig.file=/etc/execution_engine/cromwell.conf /opt/cromwell/target/scala-2.11/cromwell-0.10.jar server
