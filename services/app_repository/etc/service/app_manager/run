@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Wait for the Couchbase server to spin up.
+while ! nc -q 1 localhost 8091 </dev/null; do sleep 10; done
+
+# Create the appmanager bucket
+couchbase-cli bucket-create -c localhost -u Administrator -p password --bucket=appmanager --bucket-ramsize=100 || true
+
+eval java -jar \
+  -Dcm.central.uploadurl=http://container_manager:8080/api/v1/upload \
+  -Dam.docker.image.upload.dir=/home/sdoss/appmanager \
+  -Dam.couchbase.filterByToolName.designDocumentName=dev_filterbytoolname \
+  -Dam.couchbase.filterByToolName.viewName=filterby_toolName \
+  /opt/app_repository/appmanager/target/ccc_apprepo_am.jar

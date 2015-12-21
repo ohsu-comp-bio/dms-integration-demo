@@ -10,3 +10,6 @@
 [submodule "services/execution_engine/opt/execution_engine"]
 	path = services/execution_engine/opt/execution_engine
 	url = git@github.com:Intel-HSS/CCC_ExEngine.git
+[submodule "services/app_repository/opt/app_repository"]
+	path = services/app_repository/opt/app_repository
+	url = git@github.com:Intel-HSS/CCC_AppRepository.git

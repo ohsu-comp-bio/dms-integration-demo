@@ -98,6 +98,8 @@ dts:
     VIRTUAL_PORT: 9510
   volumes:
     - ./sites/dts.central-function.ccc.dev:/site
+  volumes_from:
+    - data
   environment:
     AGENT_SCHEDULER_DRMAA_HOST: localhost
     AGENT_SCHEDULER_NONDRMAA_HOST: localhost
@@ -113,6 +115,8 @@ dispatcher:
   environment:
     VIRTUAL_HOST: dispatcher.execution-engine.central-function.ccc.dev
     VIRTUAL_PORT: 8080
+  volumes_from:
+    - data
   volumes:
     - ./sites/dispatcher.central-function.ccc.dev:/site
 
@@ -122,6 +126,8 @@ agent:
   environment:
     VIRTUAL_HOST: agent.execution-engine.central-function.ccc.dev
     VIRTUAL_PORT: 8080
+  volumes_from:
+    - data
   volumes:
     - ./sites/dispatcher.central-function.ccc.dev:/site
 
@@ -129,8 +135,31 @@ cromwell:
   container_name: cromwell
   build: services/execution_engine
   environment:
-    VIRTUAL_HOST: cromwell
-      cromwell.execution-engine.central-function.ccc.dev
+    VIRTUAL_HOST: cromwell.execution-engine.central-function.ccc.dev
     VIRTUAL_PORT: 8000
+  volumes_from:
+    - data
   volumes:
     - ./sites/cromwell.execution-engine.central-function.ccc.dev:/site
+
+app_manager:
+  container_name: app_manager
+  build: services/app_repository
+  environment:
+    VIRTUAL_HOST: app-manager.central-function.ccc.dev
+    VIRTUAL_PORT: 8081
+  volumes_from:
+    - data
+  volumes:
+    - ./sites/app-manager.central-function.ccc.dev:/site
+
+container_manager:
+  container_name: container_manager
+  build: services/app_repository
+  environment:
+    VIRTUAL_HOST: container-manager.central-function.ccc.dev
+    VIRTUAL_PORT: 5000
+  volumes_from:
+    - data
+  volumes:
+    - ./sites/container-manager.central-function.ccc.dev:/site

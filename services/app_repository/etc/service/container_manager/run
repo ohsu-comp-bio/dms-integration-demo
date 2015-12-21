@@ -1,0 +1,13 @@
+#!/bin/bash
+eval java -jar \
+  -DdockerCm.base_filepath=/data/docker/registry/v2/repositories \
+  -DdockerCm.relative_manifest_filepath=%s/manifests/%s \
+  -DdockerCm.relative_blob_filepath=%s/blobs/%s \
+  -DdockerCm.manifest_filename=manifest.json \
+  -DdockerCm.blob_filename=data \
+  -DdockerCm.protocol=http \
+  -DdockerCm.src_ip=localhost \
+  -DdockerCm.src_port=5000 \
+  -DdockerCm.dest_endpoints=http://127.0.0.1:8090,http://127.0.0.1:8095 \
+  -DdockerCm.dest_registry_type=CONTAINERMANAGER \
+  /opt/app_repository/containermanager/target/ccc_apprepo_mm.jar
