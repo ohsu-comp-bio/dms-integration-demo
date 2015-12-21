@@ -38,7 +38,7 @@ RUN cd /opt/execution_engine/resource_manager && mvn install:install-file -Dfile
 RUN cd /opt/execution_engine/resource_manager && mvn clean && mvn package -Dmaven.test.skip=true
 
 # Copy over assets to Cromwell project
-RUN cp -r /opt/execution_engine/cromwell /opt/cromwell/
+RUN cp -r /opt/execution_engine/cromwell/src /opt/cromwell/
 RUN cp /opt/execution_engine/cromwell/build.sbt /opt/cromwell/
 RUN cp /opt/execution_engine/cromwell/scalastyle-config.xml /opt/cromwell/
 RUN cp /opt/execution_engine/cromwell/project/plugins.sbt /opt/cromwell/project/
