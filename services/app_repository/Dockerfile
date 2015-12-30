@@ -29,4 +29,4 @@ RUN cd /opt/app_repository/containermanager && mvn package -Dmaven.test.skip=tru
 
 CMD cp -r /site/. / && /sbin/my_init
 
-EXPOSE 8080
+EXPOSE 8080 8081

@@ -1,9 +1,9 @@
 dts {
   db {
-    host = "{{ DTS_DATABASE_HOST }}"
-    port = {{ DTS_DATABASE_PORT | default(27017) }}
-    name = {{ DTS_DATABASE_NAME | default("ccc") }}
-    collection = {{ DTS_DATABASE_COLLECTION | default("dts") }}
+    host = "127.0.0.1"
+    port = 27017
+    name = "ccc"
+    collection = "dts"
   }
   http {
     host = "{{ DTS_INTERFACE | default("0.0.0.0") }}"

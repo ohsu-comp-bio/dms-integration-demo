@@ -6,8 +6,8 @@ eval java -jar \
   -DdockerCm.manifest_filename=manifest.json \
   -DdockerCm.blob_filename=data \
   -DdockerCm.protocol=http \
-  -DdockerCm.src_ip=localhost \
-  -DdockerCm.src_port=5000 \
+  -DdockerCm.src_ip=$DOCKER_REGISTRY_HOST \
+  -DdockerCm.src_port=$DOCKER_REGISTRY_PORT \
   -DdockerCm.dest_endpoints=http://127.0.0.1:8090,http://127.0.0.1:8095 \
   -DdockerCm.dest_registry_type=CONTAINERMANAGER \
-  /opt/app_repository/containermanager/target/ccc_apprepo_mm.jar
+  /opt/app_repository/containermanager/target/ccc_apprepo_cm.jar
